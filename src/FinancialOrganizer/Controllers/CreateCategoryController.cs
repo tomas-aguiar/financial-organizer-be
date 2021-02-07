@@ -37,11 +37,11 @@ namespace FinancialOrganizer.Controllers
 
                 return Ok(addedCategory);
             }
-            catch (DbException dbException)
+            catch (DbException)
             {
                 return StatusCode(500);
             }
-            catch (DbUpdateException dbUpdateException)
+            catch (DbUpdateException)
             {
                 return StatusCode(500);
             }
