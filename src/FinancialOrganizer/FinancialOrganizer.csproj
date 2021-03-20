@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Compile Remove="WeatherForecast.cs" />
+    <Compile Remove="Model\Entity.cs" />
   </ItemGroup>
 
 </Project>
