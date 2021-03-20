@@ -1,20 +1,23 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinancialOrganizer.Models
 {
-    public class Category
+    public class Periodicity
     {
         [Column("Id")]
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         [Required]
         public int Id { get; set; }
         
         [Column("Name")]
-        [Required(ErrorMessage = "Required field")]
-        [MaxLength(60, ErrorMessage = "Field must contain between 3 and 60 characters")]
-        [MinLength(3, ErrorMessage = "Field must contain between 3 and 60 characters")]
+        [Required]
         public string Name { get; set; }
+        
+        [Column("Category")]
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Invalid Category")]
+        public Category Category { get; set; }
     }
 }

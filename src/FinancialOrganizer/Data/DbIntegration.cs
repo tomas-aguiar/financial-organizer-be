@@ -15,11 +15,11 @@ namespace FinancialOrganizer.Data
         {
             Context = new DataContext(configuration);
         }
-        
+
         #region Categories
         public Category RetrieveCategory(string name)
         {
-            var result = Context.Category
+            var result = Context.Categories
                 .SingleOrDefault(c => c.Name.Equals(name));
 
             return result;
@@ -32,7 +32,7 @@ namespace FinancialOrganizer.Data
 
         public List<Category> RetrieveAllCategories()
         {
-            var result = Context.Category
+            var result = Context.Categories
                 .ToList();
 
             return result;
@@ -40,31 +40,75 @@ namespace FinancialOrganizer.Data
         
         public async Task<Category> InsertCategory(Category newCategory)
         {
-            var result = await Context.Category.AddAsync(newCategory);
+            var result = await Context.Categories.AddAsync(newCategory);
             await Context.SaveChangesAsync();
 
             return result.Entity;
         }
         #endregion
         
-        #region Costs
-        public Cost RetrieveCost(string name)
+        #region Flexibility
+        public Flexibility RetrieveFlexibility(string name)
         {
-            var result = Context.Cost
+            var result = Context.Flexibilities
                 .Single(c => c.Name.Equals(name));
 
             return result;
         }
 
-        public List<Cost> RetrieveMultipleCosts(List<string> listName)
+        public List<Flexibility> RetrieveMultipleFlexibilities(List<string> listName)
         {
-            return listName.Select(RetrieveCost).ToList();
+            return listName.Select(RetrieveFlexibility).ToList();
         }
         
-        public List<Cost> RetrieveAllCosts()
+        public List<Flexibility> RetrieveAllFlexibilities()
         {
-            var result = Context.Cost
+            var result = Context.Flexibilities
                 .ToList();
+
+            return result;
+        }
+        #endregion
+
+        #region Order
+
+        public Order RetrieveOrder(string name)
+        {
+            var result = Context.Orders.Single(o => o.Name.Equals(name));
+
+            return result;
+        }
+
+        public List<Order> RetrieveMultipleOrders(List<string> names)
+        {
+            return names.Select(RetrieveOrder).ToList();
+        }
+
+        public List<Order> RetrieveAllOrders()
+        {
+            var result = Context.Orders.ToList();
+
+            return result;
+        }
+        #endregion
+        
+        #region Periodicity
+
+        public Periodicity RetrievePeriodicity(string name)
+        {
+            var result = Context.Periodicities.SingleOrDefault(p => p.Name.Equals(name));
+
+            return result;
+        }
+
+        public List<Periodicity> RetrieveMultiplePeriodicities(List<string> names)
+        {
+            return names.Select(RetrievePeriodicity).ToList();
+        }
+
+        public List<Periodicity> RetrieveAllPeriodicities()
+        {
+            var result = Context.Periodicities.ToList();
 
             return result;
         }

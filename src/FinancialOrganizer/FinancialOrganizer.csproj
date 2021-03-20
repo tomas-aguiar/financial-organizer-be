@@ -17,6 +17,19 @@
   <ItemGroup>
     <Compile Remove="WeatherForecast.cs" />
     <Compile Remove="Model\Entity.cs" />
+    <Compile Remove="Model - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Model - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Model - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Model - Copy\**" />
   </ItemGroup>
 
 </Project>

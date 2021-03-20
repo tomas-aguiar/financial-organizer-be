@@ -1,5 +1,3 @@
-using System.IO;
-using System.Net.Mime;
 using Microsoft.EntityFrameworkCore;
 using FinancialOrganizer.Models;
 using Microsoft.Extensions.Configuration;
@@ -12,15 +10,19 @@ namespace FinancialOrganizer.Data
         private readonly string _connectionString;
         private readonly bool _isDefaultConnection;
         
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Cost> Cost { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Flexibility> Flexibilities { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<Periodicity> Periodicities { get; set; }
 
         public DataContext(IConfiguration configuration, string connectionString = null)
         {
             _configuration = configuration;
             if (string.IsNullOrEmpty(connectionString))
             {
-                _connectionString = configuration.GetConnectionString("DefaultConnectionString");
+                _connectionString = _configuration.GetConnectionString("DefaultConnectionString");
                 _isDefaultConnection = true;
             }
             else

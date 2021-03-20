@@ -13,7 +13,7 @@ namespace FinancialOrganizer.Controllers
     [ApiController]
     public class CreateCategoryController : ControllerBase
     {
-        private IDbIntegration _dbIntegration;
+        private readonly IDbIntegration _dbIntegration;
 
         public CreateCategoryController(IConfiguration configuration, IDbIntegration dbIntegration = null)
         {
