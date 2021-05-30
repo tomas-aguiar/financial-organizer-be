@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FinancialOrganizer.Models
+namespace FinancialOrganizer.Model
 {
-    public class Type
+    public class CostType
     {
         [Column("Id")]
         [Key]

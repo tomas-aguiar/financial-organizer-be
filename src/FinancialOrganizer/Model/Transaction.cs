@@ -1,47 +1,44 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 
-namespace FinancialOrganizer.Models
+namespace FinancialOrganizer.Model
 {
     public class Transaction
     {
-        [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int Id { get; set; }
-        
-        [Column("Category")]
-        [Required(ErrorMessage = "Required Field")]
-        [Range(1, 1, ErrorMessage = "Invalid Category")]
-        public Category Category { get; set; }
-        
-        [Column("Type")]
-        [Required(ErrorMessage = "Required Type")]
-        [Range(1, 1, ErrorMessage = "Invalid Type")]
-        public Type Type { get; set; }
-        
-        [Column("Reference")]
+
         [Required]
-        public DateTime Reference { get; set; }
+        public decimal Amount { get; set; }
         
-        [Column("Value")]
         [Required]
-        public decimal Value { get; set; }
+        public DateTime TimeStamp { get; set; }
         
-        [Column("Date")]
+        [Required(ErrorMessage = "Required field")]
+        [MaxLength(60, ErrorMessage = "Field must contain between 3 and 60 characters")]
+        [MinLength(3, ErrorMessage = "Field must contain between 3 and 60 characters")]
+        public string Description { get; set; }
+        
         [Required]
-        public DateTime Date { get; set; }
+        [ForeignKey("Account")]
+        public int AccountId { get; set; }
         
-        [Column("Info")]
-        [AllowNull]
-        public string Info { get; set; }
+        public virtual Account Account { get; set; }
+        
+        [Required]
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
+        
+        public virtual Category Category { get; set; }
+        
+        [Required]
+        public bool IsBudget { get; set; }
         
         // [Column("FilePath")]
         // [AllowNull]
-        //public string[] Attachments { get; set; }
+        // public string[] Attachments { get; set; }
     }
 }

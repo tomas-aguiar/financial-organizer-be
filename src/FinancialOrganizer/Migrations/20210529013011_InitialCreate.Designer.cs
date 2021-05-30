@@ -3,19 +3,21 @@ using System;
 using FinancialOrganizer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinancialOrganizer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210529013011_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.3");
+                .HasAnnotation("ProductVersion", "5.0.6");
 
             modelBuilder.Entity("FinancialOrganizer.Model.Account", b =>
                 {
@@ -118,9 +120,6 @@ namespace FinancialOrganizer.Migrations
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("varchar(60)");
-
-                    b.Property<bool>("IsBudget")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("datetime");
